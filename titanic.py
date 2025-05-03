@@ -15,7 +15,7 @@ def load_and_prepare_data(path="titanic.csv"):
     # TODO: Fill missing values in 'fare' column with the median fare
     # TODO: Use LabelEncoder to encode 'sex' column
     # TODO: Use LabelEncoder to encode 'embarked' column
-    # TODO: Print "✅ Data loaded, cleaned, and encoded."
+    # TODO: Print " Data loaded, cleaned, and encoded."
     
     # Return empty DataFrame to avoid errors but make tests fail
     return pd.DataFrame()
@@ -25,7 +25,7 @@ def load_and_prepare_data(path="titanic.csv"):
 def explore_data(df):
     # TODO: Calculate the maximum value of the 'fare' column
     # TODO: Calculate the standard deviation of the 'fare' column
-    # TODO: Print "💰 Fare - Max: {max_fare}, Std Dev: {std_fare:.2f}"
+    # TODO: Print " Fare - Max: {max_fare}, Std Dev: {std_fare:.2f}"
     pass
 
 
@@ -33,8 +33,8 @@ def explore_data(df):
 def sigmoid_demo():
     # TODO: Set z = 0
     # TODO: Calculate sigmoid = 1 / (1 + np.exp(-z))
-    # TODO: Print "🧠 Sigmoid(0) = {sigmoid:.4f}"
-    pass
+    # TODO: Print " Sigmoid(0) = {sigmoid:.4f}"
+    return sigmoid_demo()
 
 
 # Function 4: Custom cost function (Log Loss)
