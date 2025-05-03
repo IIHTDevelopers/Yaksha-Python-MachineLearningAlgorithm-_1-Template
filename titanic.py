@@ -52,12 +52,12 @@ def train_and_evaluate(X_train, y_train, X_test, y_test, path="titanic_log_model
     # TODO: Create a LogisticRegression model with max_iter=1000
     # TODO: Fit the model with the training data
     # TODO: Save the model using joblib.dump()
-    # TODO: Print "✅ Model trained and saved to '{path}'"
+    # TODO: Print " Model trained and saved to '{path}'"
     # TODO: Use the model to predict classes for X_test
     # TODO: Use the model to predict probabilities for X_test and get the positive class probability
     # TODO: Calculate the cost using the custom cost_function
-    # TODO: Print "🎯 Log Loss (Custom Cost): {cost:.4f}"
-    # TODO: Print "🔍 Sample Predictions:" followed by the first 10 predictions
+    # TODO: Print " Log Loss (Custom Cost): {cost:.4f}"
+    # TODO: Print " Sample Predictions:" followed by the first 10 predictions
     pass
 
 
