@@ -17,7 +17,7 @@ def load_and_prepare_data(path="titanic.csv"):
     # TODO: Use LabelEncoder to encode 'embarked' column
     # TODO: Print " Data loaded, cleaned, and encoded."
     
-    # Return empty DataFrame to avoid errors but make tests fail
+    
     return pd.DataFrame()
 
 
@@ -40,9 +40,9 @@ def sigmoid_demo():
 def cost_function(y_true, y_pred_prob):
     # TODO: Set epsilon to 1e-15 to avoid log(0)
     # TODO: Clip prediction probabilities between epsilon and 1-epsilon
-    # TODO: Calculate binary cross-entropy: -mean(y_true*log(y_pred) + (1-y_true)*log(1-y_pred))
+    # TODO: Calculate binary cross-entropy using the applied log Loss formula 
     
-    # Return a dummy value to avoid errors but make tests fail
+    
     return 0.0
 
 
