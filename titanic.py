@@ -26,8 +26,7 @@ def explore_data(df):
     # TODO: Calculate the maximum value of the 'fare' column
     # TODO: Calculate the standard deviation of the 'fare' column
     # TODO: Print " Fare - Max: {max_fare}, Std Dev: {std_fare:.2f}"
-    pass
-
+    return round(max_fare, 4), round(std_fare, 2)
 
 # Function 3: Sigmoid activation for a single value
 def sigmoid_demo():
