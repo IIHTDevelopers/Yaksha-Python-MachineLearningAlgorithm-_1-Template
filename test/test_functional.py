@@ -70,7 +70,7 @@ class TestLinearRegressionAuto(unittest.TestCase):
 
         except Exception as e:
             self.test_obj.yakshaAssert("TestPrepareData", False, "functional")
-            print(f"LinearRegressionAuto TestPrepareData = Failed }")
+            print(f"LinearRegressionAuto TestPrepareData = Failed ")
 
     def test_train_and_save_model(self):
         try:
