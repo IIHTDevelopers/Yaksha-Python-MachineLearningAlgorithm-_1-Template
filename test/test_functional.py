@@ -165,7 +165,7 @@ class TestTitanic(unittest.TestCase):
                 print(f"Titanic TestSigmoidDemo = Failed | Got {round(result, 4)}")
         except Exception as e:
             self.test_obj.yakshaAssert("TestSigmoidDemo", False, "functional")
-            print(f"Titanic TestSigmoidDemo = Failed }")
+            print(f"Titanic TestSigmoidDemo = Failed ")
 
     def test_cost_function(self):
         try:
