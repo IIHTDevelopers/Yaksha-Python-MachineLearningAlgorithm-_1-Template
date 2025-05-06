@@ -26,7 +26,7 @@ class TestLinearRegressionAuto(unittest.TestCase):
                 print("LinearRegressionAuto TestLoadAndPreprocess = Failed")
         except Exception as e:
             self.test_obj.yakshaAssert("TestLoadAndPreprocess", False, "functional")
-            print(f"LinearRegressionAuto TestLoadAndPreprocess = Failed | Exception: {e}")
+            print(f"LinearRegressionAuto TestLoadAndPreprocess = Failed")
 
     def test_show_key_stats(self):
         try:
@@ -42,7 +42,7 @@ class TestLinearRegressionAuto(unittest.TestCase):
                 print("LinearRegressionAuto TestShowKeyStats = Failed")
         except Exception as e:
             self.test_obj.yakshaAssert("TestShowKeyStats", False, "functional")
-            print(f"LinearRegressionAuto TestShowKeyStats = Failed | Exception: {e}")
+            print(f"LinearRegressionAuto TestShowKeyStats = Failed ")
 
     def test_prepare_data(self):
         try:
@@ -70,7 +70,7 @@ class TestLinearRegressionAuto(unittest.TestCase):
 
         except Exception as e:
             self.test_obj.yakshaAssert("TestPrepareData", False, "functional")
-            print(f"LinearRegressionAuto TestPrepareData = Failed | Exception: {e}")
+            print(f"LinearRegressionAuto TestPrepareData = Failed }")
 
     def test_train_and_save_model(self):
         try:
@@ -89,7 +89,7 @@ class TestLinearRegressionAuto(unittest.TestCase):
             os.remove(model_path)
         except Exception as e:
             self.test_obj.yakshaAssert("TestTrainAndSaveModel", False, "functional")
-            print(f"LinearRegressionAuto TestTrainAndSaveModel = Failed | Exception: {e}")
+            print(f"LinearRegressionAuto TestTrainAndSaveModel = Failed")
 
     def test_evaluate_model(self):
         try:
@@ -116,7 +116,7 @@ class TestLinearRegressionAuto(unittest.TestCase):
                 print("TestEvaluateModel = Failed")
         except Exception as e:
             self.test_obj.yakshaAssert("TestEvaluateModel", False, "functional")
-            print(f"TestEvaluateModel = Failed | Exception: {e}")
+            print(f"TestEvaluateModel = Failed")
 
 
 class TestTitanic(unittest.TestCase):
@@ -136,7 +136,7 @@ class TestTitanic(unittest.TestCase):
                 print("Titanic TestLoadAndPrepareData = Failed")
         except Exception as e:
             self.test_obj.yakshaAssert("TestLoadAndPrepareData", False, "functional")
-            print(f"Titanic TestLoadAndPrepareData = Failed | Exception: {e}")
+            print(f"Titanic TestLoadAndPrepareData = Failed ")
 
     def test_explore_data(self):
         try:
@@ -152,7 +152,7 @@ class TestTitanic(unittest.TestCase):
                 print("Titanic TestExploreData = Failed")
         except Exception as e:
             self.test_obj.yakshaAssert("TestExploreData", False, "functional")
-            print(f"Titanic TestExploreData = Failed | Exception: {e}")
+            print(f"Titanic TestExploreData = Failed ")
 
     def test_sigmoid_demo(self):
         try:
@@ -165,7 +165,7 @@ class TestTitanic(unittest.TestCase):
                 print(f"Titanic TestSigmoidDemo = Failed | Got {round(result, 4)}")
         except Exception as e:
             self.test_obj.yakshaAssert("TestSigmoidDemo", False, "functional")
-            print(f"Titanic TestSigmoidDemo = Failed | Exception: {e}")
+            print(f"Titanic TestSigmoidDemo = Failed }")
 
     def test_cost_function(self):
         try:
@@ -180,7 +180,7 @@ class TestTitanic(unittest.TestCase):
                 print("Titanic TestCostFunction = Failed")
         except Exception as e:
             self.test_obj.yakshaAssert("TestCostFunction", False, "functional")
-            print(f"Titanic TestCostFunction = Failed | Exception: {e}")
+            print(f"Titanic TestCostFunction = Failed")
 
     def test_train_and_evaluate(self):
         try:
@@ -216,7 +216,7 @@ class TestTitanic(unittest.TestCase):
 
         except Exception as e:
             self.test_obj.yakshaAssert("TestTrainAndEvaluate", False, "functional")
-            print(f"Titanic TestTrainAndEvaluate = Failed | Exception: {e}")
+            print(f"Titanic TestTrainAndEvaluate = Failed")
 
 
 if __name__ == '__main__':
