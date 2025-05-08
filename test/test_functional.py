@@ -3,9 +3,8 @@ from test.TestUtils import TestUtils
 import pandas as pd
 import numpy as np
 import os
-from Linear_regression_auto import load_and_preprocess, prepare_data, train_and_save_model
-from titanic import load_and_prepare_data, explore_data, sigmoid_demo, cost_function
-
+from Linear_regression_auto import load_and_preprocess, prepare_data, train_and_save_model, evaluate_model
+from titanic import *
 
 class TestLinearRegressionAuto(unittest.TestCase):
     def setUp(self):
@@ -26,7 +25,7 @@ class TestLinearRegressionAuto(unittest.TestCase):
                 print("LinearRegressionAuto TestLoadAndPreprocess = Failed")
         except Exception as e:
             self.test_obj.yakshaAssert("TestLoadAndPreprocess", False, "functional")
-            print(f"LinearRegressionAuto TestLoadAndPreprocess = Failed")
+            print(f"LinearRegressionAuto TestLoadAndPreprocess = Failed | Exception: {e}")
 
     def test_show_key_stats(self):
         try:
@@ -42,7 +41,7 @@ class TestLinearRegressionAuto(unittest.TestCase):
                 print("LinearRegressionAuto TestShowKeyStats = Failed")
         except Exception as e:
             self.test_obj.yakshaAssert("TestShowKeyStats", False, "functional")
-            print(f"LinearRegressionAuto TestShowKeyStats = Failed ")
+            print(f"LinearRegressionAuto TestShowKeyStats = Failed | Exception: {e}")
 
     def test_prepare_data(self):
         try:
@@ -70,13 +69,14 @@ class TestLinearRegressionAuto(unittest.TestCase):
 
         except Exception as e:
             self.test_obj.yakshaAssert("TestPrepareData", False, "functional")
-            print(f"LinearRegressionAuto TestPrepareData = Failed ")
+            print(f"LinearRegressionAuto TestPrepareData = Failed | Exception: {e}")
 
     def test_train_and_save_model(self):
         try:
             df = load_and_preprocess("auto-mpg.csv")
             X_train, _, y_train, _, _ = prepare_data(df, self.features, self.target)
-            model_path = "test_linear_model.pkl"
+            model_path = "linear_model.pkl"
+
             model = train_and_save_model(X_train, y_train, model_path)
 
             if os.path.exists(model_path) and hasattr(model, 'coef_'):
@@ -86,13 +86,13 @@ class TestLinearRegressionAuto(unittest.TestCase):
                 self.test_obj.yakshaAssert("TestTrainAndSaveModel", False, "functional")
                 print("LinearRegressionAuto TestTrainAndSaveModel = Failed")
 
-            os.remove(model_path)
         except Exception as e:
             self.test_obj.yakshaAssert("TestTrainAndSaveModel", False, "functional")
-            print(f"LinearRegressionAuto TestTrainAndSaveModel = Failed")
+            print(f"LinearRegressionAuto TestTrainAndSaveModel = Failed | Exception: {e}")
 
     def test_evaluate_model(self):
         try:
+            import numpy as np
             from sklearn.linear_model import LinearRegression
             from sklearn.metrics import mean_squared_error
 
@@ -101,12 +101,17 @@ class TestLinearRegressionAuto(unittest.TestCase):
 
             model = LinearRegression()
             model.fit(X_train, y_train)
+
+            # Call the function you're testing
             y_pred = model.predict(X_test)
+            mse = mean_squared_error(y_test, y_pred)
+
+            # Call the evaluation function (for its print output)
+            evaluate_model(model, X_test, y_test)
 
             expected_preds = np.array([25.94750773, 30.75323514, 21.35934614, 26.86104935,
-                                       29.34371694, 19.73673914, 7.76156783, 35.55021913,
-                                       20.16105891, 28.90094774])
-            mse = mean_squared_error(y_test, y_pred)
+                                    29.34371694, 19.73673914, 7.76156783, 35.55021913,
+                                    20.16105891, 28.90094774])
 
             if round(mse, 4) == 10.8164 and np.allclose(y_pred[:10], expected_preds, rtol=1e-4):
                 self.test_obj.yakshaAssert("TestEvaluateModel", True, "functional")
@@ -114,9 +119,11 @@ class TestLinearRegressionAuto(unittest.TestCase):
             else:
                 self.test_obj.yakshaAssert("TestEvaluateModel", False, "functional")
                 print("TestEvaluateModel = Failed")
+
         except Exception as e:
-            self.test_obj.yakshaAssert("TestEvaluateModel", False, "functional")
-            print(f"TestEvaluateModel = Failed")
+                self.test_obj.yakshaAssert("TestEvaluateModel", False, "functional")
+                print(f"TestEvaluateModel = Failed | Exception: {e}")
+
 
 
 class TestTitanic(unittest.TestCase):
@@ -136,7 +143,7 @@ class TestTitanic(unittest.TestCase):
                 print("Titanic TestLoadAndPrepareData = Failed")
         except Exception as e:
             self.test_obj.yakshaAssert("TestLoadAndPrepareData", False, "functional")
-            print(f"Titanic TestLoadAndPrepareData = Failed ")
+            print(f"Titanic TestLoadAndPrepareData = Failed | Exception: {e}")
 
     def test_explore_data(self):
         try:
@@ -152,7 +159,7 @@ class TestTitanic(unittest.TestCase):
                 print("Titanic TestExploreData = Failed")
         except Exception as e:
             self.test_obj.yakshaAssert("TestExploreData", False, "functional")
-            print(f"Titanic TestExploreData = Failed ")
+            print(f"Titanic TestExploreData = Failed | Exception: {e}")
 
     def test_sigmoid_demo(self):
         try:
@@ -165,49 +172,48 @@ class TestTitanic(unittest.TestCase):
                 print(f"Titanic TestSigmoidDemo = Failed | Got {round(result, 4)}")
         except Exception as e:
             self.test_obj.yakshaAssert("TestSigmoidDemo", False, "functional")
-            print(f"Titanic TestSigmoidDemo = Failed ")
+            print(f"Titanic TestSigmoidDemo = Failed | Exception: {e}")
 
-    def test_cost_function(self):
+    def test_femalescount(self):
         try:
-            y_true = np.array([0, 1])
-            y_pred = np.array([0.1, 0.9])
-            cost = cost_function(y_true, y_pred)
-            if round(cost, 4) == 0.1054:
-                self.test_obj.yakshaAssert("TestCostFunction", True, "functional")
-                print("Titanic TestCostFunction = Passed")
+            # Load the data first
+            df = load_and_prepare_data("titanic.csv")
+            
+            result = count_females(df)
+
+            # Check if the result matches the expected count
+            expected_count = 314  # The expected count of females
+            if result == expected_count:
+                self.test_obj.yakshaAssert("Titanic femalescount", True, "functional")
+                print("Titanic femalescount = Passed")
             else:
-                self.test_obj.yakshaAssert("TestCostFunction", False, "functional")
-                print("Titanic TestCostFunction = Failed")
-        except Exception as e:
-            self.test_obj.yakshaAssert("TestCostFunction", False, "functional")
-            print(f"Titanic TestCostFunction = Failed")
+                self.test_obj.yakshaAssert("Titanic femalescount", False, "functional")
+                print("Titanic femalescount = Failed")
+        except Exception:
+            self.test_obj.yakshaAssert("Titanic femalescount", False, "functional")
+            print("Titanic femalescount = Failed")
 
     def test_train_and_evaluate(self):
         try:
-            from sklearn.linear_model import LogisticRegression
+            import numpy as np
             from sklearn.model_selection import train_test_split
 
+            # Load and prepare the Titanic data
             df = load_and_prepare_data("titanic.csv")
             features = ['pclass', 'sex', 'age', 'fare', 'embarked']
             X = df[features]
             y = df['survived']
 
+            # Split the data
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-            model = LogisticRegression(max_iter=1000)
-            model.fit(X_train, y_train)
 
-            assert isinstance(model, LogisticRegression)
-            assert model.max_iter == 1000
-            assert hasattr(model, "coef_")
-            assert hasattr(model, "intercept_")
+            # Call the function being tested
+            y_pred = train_and_evaluate(X_train, y_train, X_test, y_test, path="titanic_log_model.pkl")
 
-            y_pred = model.predict(X_test)
-            y_pred_prob = model.predict_proba(X_test)[:, 1]
-
+            # Define expected output for first 10 predictions (may need updating based on model and data)
             expected_classes = np.array([0, 0, 0, 1, 1, 1, 1, 0, 1, 1])
-            loss = cost_function(y_test.values, y_pred_prob)
 
-            if round(loss, 4) == 0.4227 and np.array_equal(y_pred[:10], expected_classes):
+            if isinstance(y_pred, np.ndarray) and np.array_equal(y_pred[:10], expected_classes):
                 self.test_obj.yakshaAssert("TestTrainAndEvaluate", True, "functional")
                 print("Titanic TestTrainAndEvaluate = Passed")
             else:
@@ -216,7 +222,7 @@ class TestTitanic(unittest.TestCase):
 
         except Exception as e:
             self.test_obj.yakshaAssert("TestTrainAndEvaluate", False, "functional")
-            print(f"Titanic TestTrainAndEvaluate = Failed")
+            print(f"Titanic TestTrainAndEvaluate = Failed | Exception: {e}")
 
 
 if __name__ == '__main__':
