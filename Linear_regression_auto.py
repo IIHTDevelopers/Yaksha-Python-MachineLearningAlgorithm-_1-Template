@@ -1,65 +1,68 @@
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import mean_squared_error
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import LabelEncoder
 import joblib
 
-# Function 1: Load and preprocess the dataset
-def load_and_preprocess(path):
+
+# Function 1: Load, clean, and encode Titanic dataset
+def load_and_prepare_data(path="titanic.csv"):
     # TODO: Load the CSV file using pandas
-    # TODO: Convert column names to lowercase and strip whitespace
-    # TODO: Drop rows with missing values
-    # TODO: Print "✅ Data loaded and cleaned."
-    
+    # TODO: Fill missing values in 'sex' column with 'unknown'
+    # TODO: Fill missing values in 'embarked' column with 'S'
+    # TODO: Fill missing values in 'age' column with the median age
+    # TODO: Fill missing values in 'fare' column with the median fare
+    # TODO: Use LabelEncoder to encode 'sex' column
+    # TODO: Use LabelEncoder to encode 'embarked' column
+    # TODO: Print " Data loaded, cleaned, and encoded."
+
     # Return empty DataFrame to avoid errors but make tests fail
     return pd.DataFrame()
 
-# Function 2: Show mean of displacement and min of horsepower
-def show_key_stats(df):
-    # TODO: Calculate the mean of the 'displacement' column
-    # TODO: Find the minimum value of the 'horsepower' column
-    # TODO: Print the mean displacement with format: "📏 Mean Displacement: {value:.2f}"
-    # TODO: Print the minimum horsepower with format: "⚙️  Minimum Horsepower: {value}"
-    pass
 
-# Function 3: Prepare data for training
-def prepare_data(df, features, target):
-    # TODO: Extract features (X) and target (y) from the DataFrame
-    # TODO: Create a StandardScaler and fit_transform the features
-    # TODO: Split the data into training and testing sets (test_size=0.2, random_state=42)
-    # TODO: Print "🧪 Data prepared and split."
-    
-    # Return empty arrays/series to avoid errors but make tests fail
-    return np.array([]), np.array([]), pd.Series(), pd.Series(), StandardScaler()
+# Function 2: Perform EDA (Only Max and Std for Fare)
+def explore_data(df):
+    # TODO: Calculate the maximum value of the 'fare' column
+    # TODO: Calculate the standard deviation of the 'fare' column
+    # TODO: Print " Fare - Max: {max_fare}, Std Dev: {std_fare:.2f}"
+    max_fare = None   # Replace with df['fare'].max()
+    std_fare = None  # Replace with df['fare'].std()
+    return round(max_fare, 4), round(std_fare, 2)
 
-# Function 4: Train the model and save it
-def train_and_save_model(X_train, y_train, model_path="linear_model.pkl"):
-    # TODO: Create a LinearRegression model
+
+# Function 3: Sigmoid activation for a single value
+def sigmoid_demo():
+    # TODO: Set z = 0
+    # TODO: Calculate sigmoid = 1 / (1 + np.exp(-z))
+    # TODO: Print " Sigmoid(0) = {sigmoid:.4f}"
+    return sigmoid_demo()
+
+def count_females(df):
+        # TODO: write the function to  count number of females in the dataset
+        # TODO:Assuming 'female' was encoded as 0
+    count=None #write you logic here
+    return count
+
+# Function 5: Train and evaluate model
+def train_and_evaluate(X_train, y_train, X_test, y_test, path="titanic_log_model.pkl"):
+    # TODO: Create a LogisticRegression model with max_iter=1000
     # TODO: Fit the model with the training data
     # TODO: Save the model using joblib.dump()
-    # TODO: Print "✅ Model trained and saved to '{model_path}'"
-    
-    # Return an untrained model to avoid errors but make tests fail
-    return LinearRegression()
-
-# Function 5: Evaluate the model
-def evaluate_model(model, X_test, y_test):
-    # TODO: Use the model to predict values for X_test
-    # TODO: Calculate the mean squared error between predictions and actual values
-    # TODO: Print "🎯 Mean Squared Error: {mse:.4f}"
-    # TODO: Print "🔍 Sample Predictions:" followed by the first 10 predictions
+    # TODO: Print " Model trained and saved to '{path}'"
+    # TODO: Use the model to predict classes for X_test
+    # TODO: Use the model to predict probabilities for X_test and get the positive class probability
+        # TODO: Print "🔍Sample Predictions:" followed by the first 10 predictions
     pass
 
-# ---- MAIN SCRIPT ----
-if __name__ == "__main__":
-    features = ['cylinders', 'displacement', 'horsepower', 'weight', 'acceleration', 'model-year']
-    target = 'mpg'
 
-    # TODO: Call load_and_preprocess() with "auto-mpg.csv"
-    # TODO: Call show_key_stats() with the loaded DataFrame
-    # TODO: Call prepare_data() with the DataFrame, features, and target
-    # TODO: Call train_and_save_model() with the training data
-    # TODO: Call evaluate_model() with the model and testing data
+# --------- Main Logic ---------
+if __name__ == "__main__":
+    # TODO: Call load_and_prepare_data() with "titanic.csv"
+    # TODO: Call explore_data() with the loaded DataFrame
+    # TODO: Call sigmoid_demo()
+    # TODO: Define features list: ['pclass', 'sex', 'age', 'fare', 'embarked']
+    # TODO: Extract features (X) and target (y) from the DataFrame
+    # TODO: Split the data into training and testing sets (test_size=0.2, random_state=42)
+    # TODO: Call train_and_evaluate() with the training and testing data
     pass
