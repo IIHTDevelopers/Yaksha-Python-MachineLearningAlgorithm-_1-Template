@@ -21,8 +21,8 @@ def load_and_preprocess(path):
 def show_key_stats(df):
     # TODO: Calculate the mean of the 'displacement' column
     # TODO: Find the minimum value of the 'horsepower' column
-    # TODO: Print the mean displacement with format: "📏 Mean Displacement: {value:.2f}"
-    # TODO: Print the minimum horsepower with format: "⚙️  Minimum Horsepower: {value}"
+    # TODO: Print the mean displacement :eg " Mean Displacement: {value:.2f}"
+    # TODO: Print the minimum horsepower :eg" Minimum Horsepower: {value}"
     pass
 
 
